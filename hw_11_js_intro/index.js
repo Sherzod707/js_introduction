@@ -30,4 +30,10 @@ function sumDig(num) {
 }
     console.log(sumDig(-123));
 
-    
+    function DisplayAnanas() {
+        let a = "a";
+        let s = "s";
+        console.log(a + (a - s) + a + s);
+        
+    }
+    DisplayAnanas()
