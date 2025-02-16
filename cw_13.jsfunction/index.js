@@ -1,46 +1,46 @@
-let array = ["abc", 23];
+let array = ["abc", 23, 52, 1992];
 
-
-function forEach(array, fun) {
-    for(let i = 0; i < array.length; i++){
-        fun(array[i], i);
-    }
-}
-//forEach takes array and function with two parameters first
-//  - element of array, second - index
-
-function print(elem, index) {
-    console.log(`index: ${index}, element: ${elem}`);
-};
-forEach(array, print);
-///////////////////////////////////////
 function some(array, fun) {
-    //TODO
-    //a returns true if at least one elements of the array match 
-    // a condition given in the function (fun)
+    for (let i = 0; i < array.length; i++) {
+        if (fun(array[i], i, array)) {
+            return true;
+        }
+    }
+    return false;
 }
-function evenNumber(num) {
-    return num % 2 == 0;
-}
-console.log(`using "some" function for even numbers array:
-     ${array}, function ${evenNumber}, 
-     result: ${some(array,evenNumber)} - false`);
 
 function every(array, fun) {
-    //TODO
-    //returns true if all elements of the array match a 
-    //conditions given in the function (fun)
+    for (let i = 0; i < array.length; i++) {
+        if (!fun(array[i], i, array)) {
+            return false;
+        }
+    }
+    return true;
 }
+
+// Juft sonlarni tekshirish funksiyasi
+function evenNumber(num) {
+    return  num % 2 === 0;
+}
+
+console.log(`"some" funksiyasidan foydalanib, juft sonlar uchun tekshirish: 
+    massiv: ${array}, funksiya: evenNumber, 
+    natija: ${some(array, evenNumber)} - true`);
+     
+     
+
 array = [2, 3, 4];
+
 function elmGreaterIndex(elem, index) {
     return elem > index;
 }
-console.log(`using "every" function for elements 
-    greater than th index values array:
-     ${array}, function ${elmGreaterIndex}, 
-     result: ${every(array,evenNumber)} - true`);
 
-    //# HW 13 definition
-    //## write the method "some" (ree comments)
-    //## write the method "every" (see comments)
-    //## write more test cases (console.log functionality)
+console.log(`"every" funksiyasidan foydalanib, barcha elementlar indeks qiymatlaridan katta ekanligini tekshirish:massiv: ${array},
+            funksiya: elmGreaterIndex,  natija: ${every(array, elmGreaterIndex)} - true`);
+   
+
+// Yana qo'shimcha testlar:
+console.log(some([1, 3, 5, 7], evenNumber)); // false (hech biri juft emas)
+console.log(some([2, 4, 6, 8], evenNumber)); // true (kamida bitta juft bor)
+console.log(every([2, 4, 6, 8], evenNumber)); // true (hammasi juft)
+console.log(every([1, 2, 3, 4], evenNumber)); // false (hammasi juft emas)
